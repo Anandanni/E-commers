@@ -1,0 +1,81 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} {{Product.Product_name}} {% endblock %}
+
+<!-- Make Product page using Bootstrp -->
+{% block body %}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <img src="/media/{{product.image}} " alt="" width="233px",height="385px">
+            </div>
+            <div class="row my-4">
+                <a href="/shop/"><button  class="btn btn-primary mx-2 ">Buy</button></a>
+                <a href="/shop/"><button  class="btn btn-primary">Add-to-Cart</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <!-- Fatcing Name And Des For the product  -->
+            <h5>{{product.Product_name}}</h5>
+            <p> <b> Category:{{product.subcategory}}</b></p>
+            <p><b>Rs.{{product.Price}}</b></p>
+            <p>{{product.Desc}}</p>
+            
+        
+        </div>
+    </div>
+    <div class="container">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            
+          </ul>
+          <p class="text-center text-body-secondary">© 2023 Company, My_AsomeCart</p>
+        </footer>
+      </div>
+
+
+</div>
+<script>
+    console.log('working');
+    if(localStorage.getItem('cart') == null){
+    var cart = {};
+    }
+    else
+    {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    }
+    $('.cart').click(function(){
+    console.log('clicked');
+    var idstr = this.id.toString();
+    console.log(idstr);
+    if (cart[idstr] !=undefined){
+    cart[idstr] = cart[idstr] + 1;
+    }
+    else
+    {
+    cart[idstr] = 1;
+    }
+    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    });
+
+    
+    // Activet your tolkit button for adding items in pop
+    $('#popcart').popover();
+    document.getElementById("popcart").setAttribute('data-content', '<h5>Items In cart </h5>');
+    </script>
+
+
+
+
+{% endblock %}
