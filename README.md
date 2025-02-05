@@ -1,0 +1,1 @@
+An e-commerce website is an online platform where businesses and individuals can sell products or services to customers. It typically includes features for browsing products, placing orders, processing payments, and managing inventory. Here's a breakdown of the key aspects of an e-commerce website:
